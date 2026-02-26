@@ -8,17 +8,32 @@ const router = createRouter({
   routes: [
     {
       path: '/',
-      component: Home
+      component: Home,
+      meta: {
+        title: 'Home'
+      }
     },
     {
       path: '/about',
-      component: About
+      component: About,
+      meta: {
+        title: 'About'
+      }
     },
     {
       path: '/details/:id',
-      component: Details
+      component: Details,
+      meta: {
+        title: 'Details'
+      }
     }
-  ],
+  ]
+})
+
+router.afterEach((to, form, next) => {
+  if (to.meta.title) {
+    document.title = `${to.meta.title} :: Tickets`
+  }
 })
 
 export default router

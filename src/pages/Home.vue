@@ -1,12 +1,14 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
+import type { FlightModel } from '@/models/flight.model';
+import { FlighService } from '@/services/flight.service';
 import { formatDate, getImageUrl } from '@/utils';
-import axios from 'axios';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
-const flights = ref<any[]>()
+const flights = ref<FlightModel[]>([])
 
 function loadData() {
-    axios.get('https://flight.pequla.com/api/flight/list?type=departure')
+    FlighService.getFlights()
         .then(rsp => {
             flights.value = rsp.data
         })
@@ -18,7 +20,7 @@ onBeforeUnmount(() => clearInterval(interval))
 </script>
 
 <template>
-    <div class="card-wrapper" v-if="flights">
+    <div class="card-wrapper" v-if="flights.length > 0">
         <div class="card flight-card" v-for="f of flights">
             <img :src="getImageUrl(f)" class="card-img-top" :alt="f.destination">
             <div class="card-body">
@@ -36,13 +38,7 @@ onBeforeUnmount(() => clearInterval(interval))
             </div>
         </div>
     </div>
-    <div class="text-center" v-else>
-        <div class="spinner-border" role="status">
-            <span class="visually-hidden">Loading...</span>
-        </div>
-        <h5>Loading data</h5>
-        <p>Please wait while we load the latest flight data!</p>
-    </div>
+    <Loading v-else />
 </template>
 
 <style>
