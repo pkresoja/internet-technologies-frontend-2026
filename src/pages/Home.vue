@@ -10,7 +10,9 @@ const flights = ref<FlightModel[]>([])
 function loadData() {
     FlighService.getFlights()
         .then(rsp => {
-            flights.value = rsp.data
+            flights.value = rsp.data.sort((f1, f2) =>{
+                return new Date(f1.scheduledAt).getTime() - new Date(f2.scheduledAt).getTime()
+            })
         })
 }
 

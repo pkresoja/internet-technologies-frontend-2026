@@ -1,6 +1,7 @@
 import About from '@/pages/About.vue'
 import Details from '@/pages/Details.vue'
 import Home from '@/pages/Home.vue'
+import Table from '@/pages/Table.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -18,6 +19,13 @@ const router = createRouter({
       component: About,
       meta: {
         title: 'About'
+      }
+    },
+    {
+      path: '/table',
+      component: Table,
+      meta: {
+        title: 'Table View'
       }
     },
     {
