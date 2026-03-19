@@ -2,7 +2,7 @@
 import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
 import { FlighService } from '@/services/flight.service';
-import { formatDate, getImageUrl } from '@/utils';
+import { formatScheduledDate, getImageUrl } from '@/utils';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const flights = ref<FlightModel[]>([])
@@ -30,7 +30,7 @@ onBeforeUnmount(() => clearInterval(interval))
                     {{ f.destination }}
                 </h5>
                 <h6 class="card-subtitle mb-2 text-body-secondary">
-                    {{ f.flightNumber }} - {{ formatDate(f) }}
+                    {{ f.flightNumber }} - {{ formatScheduledDate(f) }}
                 </h6>
             </div>
             <div class="card-footer">

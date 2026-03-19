@@ -1,4 +1,5 @@
 import About from '@/pages/About.vue'
+import Airline from '@/pages/Airline.vue'
 import Details from '@/pages/Details.vue'
 import Home from '@/pages/Home.vue'
 import Table from '@/pages/Table.vue'
@@ -33,6 +34,13 @@ const router = createRouter({
       component: Details,
       meta: {
         title: 'Details'
+      }
+    },
+    {
+      path: '/airline',
+      component: Airline,
+      meta: {
+        title: 'Airlines'
       }
     }
   ]

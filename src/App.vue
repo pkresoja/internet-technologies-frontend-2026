@@ -20,6 +20,16 @@ const year = new Date().getFullYear()
             </RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" active-class="active" to="/table">
+              <i class="fa-solid fa-table"></i> As Table
+            </RouterLink>
+          </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" active-class="active" to="/airline">
+              <i class="fa-solid fa-plane"></i> Airlines
+            </RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink class="nav-link" active-class="active" to="/about">
               <i class="fa-solid fa-circle-info"></i> About
             </RouterLink>

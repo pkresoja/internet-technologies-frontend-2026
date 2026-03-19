@@ -2,7 +2,7 @@
 import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
 import { FlighService } from '@/services/flight.service';
-import { formatDate, getImageUrl } from '@/utils';
+import { formatScheduledDate, getImageUrl } from '@/utils';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
@@ -35,7 +35,7 @@ FlighService.getFlightById(id)
                             <i class="fa-solid fa-fingerprint"></i> {{ flight.flightKey }}
                         </li>
                         <li class="list-group-item">
-                            <i class="fa-solid fa-clock-rotate-left"></i> {{ formatDate(flight) }}
+                            <i class="fa-solid fa-clock-rotate-left"></i> {{ formatScheduledDate(flight) }}
                         </li>
                         <li class="list-group-item">
                             <i class="fa-solid fa-business-time"></i>&nbsp;

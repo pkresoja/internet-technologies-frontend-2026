@@ -1,7 +1,8 @@
 <script lang="ts" setup>
+import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
 import { FlighService } from '@/services/flight.service';
-import { formatDate } from '@/utils';
+import { formatScheduledDate } from '@/utils';
 import { ref } from 'vue';
 
 const flights = ref<FlightModel[]>([])
@@ -15,7 +16,7 @@ FlighService.getFlights()
 </script>
 
 <template>
-    <table class="table">
+    <table class="table" v-if="flights.length > 0">
         <thead>
             <tr>
                 <th scope="col">#</th>
@@ -34,7 +35,7 @@ FlighService.getFlights()
                 <th scope="row">{{ f.id }}</th>
                 <td>{{ f.flightNumber }}</td>
                 <td>{{ f.destination }}</td>
-                <td>{{ formatDate(f) }}</td>
+                <td>{{ formatScheduledDate(f) }}</td>
                 <td>
                     <span class="text-warning fw-bold" v-if="f.estimatedAt">LATE</span>
                     <span class="text-success fw-bold" v-else>ON TIME</span>
@@ -50,5 +51,5 @@ FlighService.getFlights()
             </tr>
         </tbody>
     </table>
-    <pre>{{ flights }}</pre>
+    <Loading v-else />
 </template>
