@@ -1,3 +1,4 @@
+import type { AirlineModel } from "@/models/airline.model";
 import axios from "axios";
 
 const client = axios.create({
@@ -5,12 +6,35 @@ const client = axios.create({
     headers: {
         'Accept': 'application/json',
         'X-Name': 'ITWS_2026'
+    },
+    validateStatus: (status: number) => {
+        return status === 200 || status === 204
     }
 })
 
 export class DataService {
     static async getAirlines() {
         return await client.get('/airline')
+    }
+
+    static async getAirlineById(id: number) {
+        return await client.get('/airline/' + id)
+    }
+
+    static async updateAirline(id: number, airline: AirlineModel) {
+        return await client.request({
+            url: `/airline/${id}`,
+            method: 'PUT',
+            data: airline
+        })
+    }
+
+    static async createAirline(airline: any) {
+        return await client.request({
+            url: `/airline`,
+            method: 'POST',
+            data: airline
+        })
     }
 
     static async deleteAirline(id: number) {

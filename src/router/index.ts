@@ -1,7 +1,9 @@
 import About from '@/pages/About.vue'
 import Airline from '@/pages/Airline.vue'
 import Details from '@/pages/Details.vue'
+import EditAirline from '@/pages/EditAirline.vue'
 import Home from '@/pages/Home.vue'
+import NewAirline from '@/pages/NewAirline.vue'
 import Table from '@/pages/Table.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 
@@ -41,6 +43,20 @@ const router = createRouter({
       component: Airline,
       meta: {
         title: 'Airlines'
+      }
+    },
+    {
+      path: '/airline/new',
+      component: NewAirline,
+      meta: {
+        title: 'New Airline'
+      }
+    },
+    {
+      path: '/airline/:id',
+      component: EditAirline,
+      meta: {
+        title: 'Edit Airline'
       }
     }
   ]
