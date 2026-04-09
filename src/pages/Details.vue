@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
-import { FlighService } from '@/services/flight.service';
+import { DataService } from '@/services/data.service';
 import { formatScheduledDate, getImageUrl } from '@/utils';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -9,7 +9,7 @@ import { useRoute } from 'vue-router';
 const route = useRoute()
 const id = Number(route.params.id)
 const flight = ref<FlightModel>()
-FlighService.getFlightById(id)
+DataService.getFlightById(id)
     .then(rsp => flight.value = rsp.data)
 </script>
 
@@ -54,9 +54,9 @@ FlighService.getFlightById(id)
                     </ul>
                     <div class="card-body">
                         <div class="btn-group">
-                            <button type="button" class="btn btn-success">
+                            <RouterLink :to="`/details/${flight.id}/order`" class="btn btn-success">
                                 <i class="fa-solid fa-cart-shopping"></i> Order now
-                            </button>
+                            </RouterLink>
                         </div>
                     </div>
                 </div>

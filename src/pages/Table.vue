@@ -2,13 +2,13 @@
 import DataCard from '@/components/DataCard.vue';
 import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
-import { FlighService } from '@/services/flight.service';
+import { DataService } from '@/services/data.service';
 import { formatScheduledDate } from '@/utils';
 import { ref } from 'vue';
 
 const flights = ref<FlightModel[]>([])
 
-FlighService.getFlights()
+DataService.getFlights()
     .then(rsp => {
         flights.value = rsp.data.sort((f1, f2) => {
             return new Date(f1.scheduledAt).getTime() - new Date(f2.scheduledAt).getTime()
@@ -17,7 +17,7 @@ FlighService.getFlights()
 </script>
 
 <template>
-    <DataCard title="Flight List"  v-if="flights.length > 0">
+    <DataCard title="Flight List" v-if="flights.length > 0">
         <table class="table">
             <thead>
                 <tr>

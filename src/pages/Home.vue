@@ -1,19 +1,15 @@
 <script lang="ts" setup>
 import Loading from '@/components/Loading.vue';
 import type { FlightModel } from '@/models/flight.model';
-import { FlighService } from '@/services/flight.service';
+import { DataService } from '@/services/data.service';
 import { formatScheduledDate, getImageUrl } from '@/utils';
 import { onBeforeUnmount, onMounted, ref } from 'vue';
 
 const flights = ref<FlightModel[]>([])
 
 function loadData() {
-    FlighService.getFlights()
-        .then(rsp => {
-            flights.value = rsp.data.sort((f1, f2) =>{
-                return new Date(f1.scheduledAt).getTime() - new Date(f2.scheduledAt).getTime()
-            })
-        })
+    DataService.getFlights()
+        .then(rsp => flights.value = rsp.data)
 }
 
 const interval = setInterval(() => loadData(), 5 * 60 * 1000)

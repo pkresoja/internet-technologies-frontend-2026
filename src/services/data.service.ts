@@ -1,4 +1,5 @@
 import type { AirlineModel } from "@/models/airline.model";
+import type { FlightModel } from "@/models/flight.model";
 import axios from "axios";
 
 const client = axios.create({
@@ -13,6 +14,14 @@ const client = axios.create({
 })
 
 export class DataService {
+    static async getFlights() {
+        return client.get<FlightModel[]>('/flight')
+    }
+
+    static async getFlightById(id: number) {
+        return client.get<FlightModel>(`/flight/${id}`)
+    }
+
     static async getAirlines() {
         return await client.get('/airline')
     }
