@@ -52,4 +52,16 @@ export class DataService {
             method: 'delete'
         })
     }
+
+    static async createTicket(ticket: any) {
+        return await client.request({
+            url: `/ticket`,
+            method: 'POST',
+            data: ticket
+        })
+    }
+
+    static async getTickets() {
+        return await client.get('/ticket')
+    }
 }

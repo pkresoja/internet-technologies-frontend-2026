@@ -3,12 +3,13 @@ import Loading from '@/components/Loading.vue';
 import type { AirlineModel } from '@/models/airline.model';
 import type { FlightModel } from '@/models/flight.model';
 import { DataService } from '@/services/data.service';
-import { formatScheduledDate, getImageUrl } from '@/utils';
+import { formatScheduledDate, getImageUrl, getSeatingType } from '@/utils';
 import { ref } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 
 
 const route = useRoute()
+const router = useRouter()
 const id = Number(route.params.id)
 const ticket = ref({
     flightId: 0,
@@ -30,6 +31,14 @@ DataService.getAirlines()
         airlines.value = rsp.data
         ticket.value.airlineId = rsp.data[0].id
     })
+
+function createOrder() {
+    if (!confirm(`Place an order for ${ticket.value.count} ticket/s to ${flight.value?.destination} at ${formatScheduledDate(flight.value!)} in ${getSeatingType(ticket.value!.seatingType as any)}?`))
+        return
+
+    DataService.createTicket(ticket.value)
+        .then(rsp => router.push(`/orders`))
+}
 </script>
 
 <template>
@@ -80,9 +89,9 @@ DataService.getAirlines()
                 </div>
             </div>
             <div class="card-footer">
-                <RouterLink :to="`/details/${flight.id}`" class="btn btn-primary">
-                    <i class="fa-solid fa-arrow-up-right-from-square"></i> Details
-                </RouterLink>
+                <button type="button" class="btn btn-success" @click="createOrder">
+                    <i class="fa-solid fa-cart-shopping"></i> Order Now
+                </button>
             </div>
         </div>
     </div>

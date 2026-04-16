@@ -1,6 +1,7 @@
 import About from '@/pages/About.vue'
 import Details from '@/pages/Details.vue'
 import Home from '@/pages/Home.vue'
+import Orders from '@/pages/Orders.vue'
 import Table from '@/pages/Table.vue'
 import Airlines from '@/pages/airline/Airlines.vue'
 import EditAirline from '@/pages/airline/EditAirline.vue'
@@ -66,7 +67,14 @@ const router = createRouter({
       meta: {
         title: 'Edit Airline'
       }
-    }
+    },
+    {
+      path: '/orders',
+      component: Orders,
+      meta: {
+        title: 'Orders'
+      }
+    },
   ]
 })
 

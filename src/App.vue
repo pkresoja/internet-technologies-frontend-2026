@@ -30,6 +30,11 @@ const year = new Date().getFullYear()
             </RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" active-class="active" to="/orders">
+              <i class="fa-solid fa-cart-shopping"></i> Orders
+            </RouterLink>
+          </li>
+          <li class="nav-item">
             <RouterLink class="nav-link" active-class="active" to="/about">
               <i class="fa-solid fa-circle-info"></i> About
             </RouterLink>

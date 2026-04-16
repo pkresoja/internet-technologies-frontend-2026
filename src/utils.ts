@@ -26,3 +26,10 @@ export function formatDate(iso: string | null) {
         second: '2-digit'
     })
 }
+
+export function getSeatingType(type: string) {
+    if (type == 'e') return 'Economy'
+    if (type == 'b') return 'Business'
+    if (type == 'f') return 'First Class'
+    return 'Unknown'
+}

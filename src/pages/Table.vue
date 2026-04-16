@@ -9,11 +9,7 @@ import { ref } from 'vue';
 const flights = ref<FlightModel[]>([])
 
 DataService.getFlights()
-    .then(rsp => {
-        flights.value = rsp.data.sort((f1, f2) => {
-            return new Date(f1.scheduledAt).getTime() - new Date(f2.scheduledAt).getTime()
-        })
-    })
+    .then(rsp => flights.value = rsp.data)
 </script>
 
 <template>

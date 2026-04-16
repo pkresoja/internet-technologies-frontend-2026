@@ -55,7 +55,7 @@ DataService.getFlightById(id)
                     <div class="card-body">
                         <div class="btn-group">
                             <RouterLink :to="`/details/${flight.id}/order`" class="btn btn-success">
-                                <i class="fa-solid fa-cart-shopping"></i> Order now
+                                <i class="fa-solid fa-cart-shopping"></i> Order Now
                             </RouterLink>
                         </div>
                     </div>
